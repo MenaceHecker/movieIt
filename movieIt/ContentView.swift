@@ -16,11 +16,11 @@ struct ContentView: View {
             Tab("Upcoming", systemImage: "play.circle"){
                 Text("Upcoming")
             }
-            Tab("Home", systemImage: "house"){
-                Text("Home")
+            Tab("Search", systemImage: "magnifyingglass"){
+                Text("Search")
             }
-            Tab("Home", systemImage: "house"){
-                Text("Home")
+            Tab("Download", systemImage: "arrow.down.to.line"){
+                Text("Download")
             }
         }
     }
