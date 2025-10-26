@@ -13,6 +13,15 @@ struct ContentView: View {
             Tab("Home", systemImage: "house"){
                 Text("Home")
             }
+            Tab("Upcoming", systemImage: "play.circle"){
+                Text("Upcoming")
+            }
+            Tab("Home", systemImage: "house"){
+                Text("Home")
+            }
+            Tab("Home", systemImage: "house"){
+                Text("Home")
+            }
         }
     }
 }
