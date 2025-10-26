@@ -16,4 +16,6 @@ struct Constants{
     static let upcomingIconString = "play.circle"
     static let searchIconString = "magnifyingglass"
     static let downloadIconString = "arrow.down.to.line"
+    
+    static let testTitleURL = "https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg"
 }
