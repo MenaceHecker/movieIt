@@ -25,17 +25,12 @@ struct HomeView: View {
                 Button {
                 } label: {
                     Text(Constants.playString)
-                        .frame(width:100, height: 50 )
-                        .foregroundStyle(.buttonText)
-                        .bold()
-                        .background{
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .stroke(.buttonBorder, lineWidth: 5)
-                        }
+                        .ghostButton()
                 }
                 Button {
                 } label: {
                     Text(Constants.downloadString)
+                        .ghostButton()
                 }
             }
         }
