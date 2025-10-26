@@ -30,7 +30,7 @@ struct HomeView: View {
                         .bold()
                         .background{
                             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .stroke(lineWidth: 5)
+                                .stroke(.buttonBorder, lineWidth: 5)
                         }
                 }
                 Button {
