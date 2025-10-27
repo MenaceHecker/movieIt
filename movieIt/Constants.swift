@@ -20,6 +20,8 @@ struct Constants{
     static let downloadIconString = "arrow.down.to.line"
     
     static let testTitleURL = "https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg"
+    static let testTitleURL2 = "https://image.tmdb.org/t/p/original/wigZBAmNrIhxp2FNGOROUAeHvdh.jpg"
+    static let testTitleURL3 = "https://image.tmdb.org/t/p/original/cP8PQH082SuaYLOJuuXyEQmS497.jpg"
 }
 extension Text {
     func ghostButton() -> some View {
