@@ -33,6 +33,11 @@ struct HomeView: View {
                         .ghostButton()
                 }
             }
+            
+            HorizontalListView(header: Constants.trendingMovieString)
+            HorizontalListView(header: Constants.trendingTVString)
+            HorizontalListView(header: Constants.topRatedMovieString)
+            HorizontalListView(header: Constants.topRatedTVString)
         }
     }
 }
