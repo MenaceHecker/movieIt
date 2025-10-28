@@ -25,6 +25,7 @@ struct HorizontalListView: View {
                             image
                                 .resizable()
                                 .scaledToFit()
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                             
                         }placeholder: {
                             ProgressView()
@@ -36,6 +37,8 @@ struct HorizontalListView: View {
                 }
             }
         }
+        .frame(height: 250)
+        .padding(10)
     }
 }
 
