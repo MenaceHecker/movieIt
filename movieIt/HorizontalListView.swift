@@ -13,7 +13,21 @@ struct HorizontalListView: View {
     
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading){
+        Text(header)
+                .font(.title)
+            
+            ScrollView(.horizontal){
+                LazyHStack{
+                    ForEach(titles,id:\.self){
+                        title in
+                        AsyncImage(url: URL(string: title))
+                        
+                        
+                    }
+                }
+            }
+        }
     }
 }
 
