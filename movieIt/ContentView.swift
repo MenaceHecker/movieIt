@@ -23,14 +23,6 @@ struct ContentView: View {
                 Text(Constants.downloadString)
             }
         }
-        .onAppear {
-            if let config = APIConfig.shared {
-                print(config.tmdbBaseURL)
-                print(config.tmdbAPIKey)
-            } else {
-                print("Failed to load API configuration")
-            }
-        }
     }
 }
 
