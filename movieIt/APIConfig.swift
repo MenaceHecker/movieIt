@@ -14,5 +14,12 @@ struct APIConfig : Decodable {
         guard let url = Bundle.main.url(forResource: "APIConfig", withExtension: "json") else {
             fatalError("APIConfig.json does not exist")
         }
+        do{
+            let data = try Data(contentsOf: url)
+            return try JSONDecoder().decode(APIConfig.self, from: data)
+            
+        } catch{
+            fatalError("Failed to find or deocde APIConfig.json: \(error)")
+        }
     }()
 }
