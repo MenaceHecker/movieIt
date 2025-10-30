@@ -6,3 +6,8 @@
 //
 
 import Foundation
+enum APIConfigError: Error, LocalizedError{
+    case fileNotFound
+    case dataLoadingFailed(underlyingError: Error)
+    case decodingFailed(underlyingError: Error)
+}
