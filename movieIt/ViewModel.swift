@@ -10,6 +10,6 @@ import Foundation
 @Observable
 class ViewModel{
     enum FetchStatus{
-        
+        case notStarted
     }
 }
