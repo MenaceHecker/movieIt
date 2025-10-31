@@ -22,6 +22,7 @@ struct APIConfig: Decodable {
     
     private static func loadConfig() throws -> APIConfig {
         guard let url = Bundle.main.url(forResource: "APIConfig", withExtension: "json") else {
+            //guard keyword is used to transfer program control out of a scope if one or more conditions are not met.
             throw APIConfigError.fileNotFound
         }
         
