@@ -6,3 +6,10 @@
 //
 
 import Foundation
+ //observable allows viewmodel to automatically modify UI of any data changes. Cannot use struct with observable
+@Observable
+class ViewModel{
+    enum FetchStatus{
+        
+    }
+}
