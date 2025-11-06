@@ -22,7 +22,7 @@ struct DataFetcher{
         }
         
         guard let fetchTitlesURL = URL (string: baseURL)?
-            .appending(path: "3/trending\(media)/day")
+            .appending(path: "3/trending/\(media)/day")
             .appending(queryItems: [
                 URLQueryItem(name: "api_key", value: apiKey)
             ]) else{
