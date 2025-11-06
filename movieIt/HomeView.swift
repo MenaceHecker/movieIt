@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     var heroTestTitle = Constants.testTitleURL
+    let viewModel = ViewModel()
         
     var body: some View {
         GeometryReader{ geo in
