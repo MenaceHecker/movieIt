@@ -13,7 +13,7 @@ struct DataFetcher{
     let tmdbAPIKey = APIConfig.shared?.tmdbAPIKey
     
     
-    func fetchTitles(for media:String) async throws -> [Title] {
+    func fetchTitles(for media:String, by type:String) async throws -> [Title] {
         guard let baseURL = tmdbBaseURL else{
             throw NetworkError.missingConfig
         }
