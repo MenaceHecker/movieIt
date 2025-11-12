@@ -20,6 +20,7 @@ struct HomeView: View {
                         EmptyView()
                     case .fetching:
                         ProgressView()
+                            .frame(width: geo.size.width, height: geo.size.height)
                     case .success:
                         AsyncImage(url: URL(string: heroTestTitle)) { image in
                             image

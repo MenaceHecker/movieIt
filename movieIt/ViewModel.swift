@@ -37,7 +37,7 @@ class ViewModel{
                 trendingTV = try await tTv
                 topRatedMovies = try await tRMovies
                 topRatedTV = try await tRTV
-                homeStatus = .success
+                homeStatus = .fetching
             } catch {
                 print(error)
                 homeStatus = .failed(underlyingError: error)
