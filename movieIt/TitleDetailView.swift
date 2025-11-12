@@ -20,6 +20,12 @@ struct TitleDetailView: View {
                     }placeholder: {
                         ProgressView()
                     }
+                    .frame(width: geometry.size.width, height: geometry.size.height*0.85)
+                    Text((title.name ?? title.title) ?? "")
+                        .font(.largeTitle)
+                        .bold()
+                        .font(.title2)
+                        .padding(5)
                 }
             }
         }
