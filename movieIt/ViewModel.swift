@@ -22,7 +22,7 @@ class ViewModel{
     func getTitles() async{
         homeStatus = .fetching
         do{
-            trendingMovies = try await dataFetcher.fetchTitles(for: "movie")
+            trendingMovies = try await dataFetcher.fetchTitles(for: "movie", by: "trending")
             homeStatus = .success
         } catch {
             print(error)
