@@ -13,7 +13,13 @@ struct TitleDetailView: View {
         GeometryReader{ geometry in
             ScrollView{
                 LazyVStack(alignment: .leading){
-                    AsyncImage(url: URL(string: title.posterPath ?? ""))
+                    AsyncImage(url: URL(string: title.posterPath ?? "")) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    }placeholder: {
+                        ProgressView()
+                    }
                 }
             }
         }
