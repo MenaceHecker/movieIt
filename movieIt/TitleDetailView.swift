@@ -10,10 +10,16 @@ import SwiftUI
 struct TitleDetailView: View {
     let title: Title
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader{ geometry in
+            ScrollView{
+                LazyVStack(alignment: .leading){
+                    AsyncImage(url: URL(string: title.posterPath ?? ""))
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    TitleDetailView()
+    TitleDetailView(title: Title.previewTitles[0])
 }
