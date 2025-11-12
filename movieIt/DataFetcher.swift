@@ -14,7 +14,10 @@ struct DataFetcher{
     
     
     func fetchTitles(for media:String, by type:String) async throws -> [Title] {
-       
+        let fetchTitleURL = try buildURL(media: media, type: type)
+        guard let fetchTitlesURL = fetchTitleURL else {
+            throw NetworkError.urlBuildFailed
+        }
         print(fetchTitlesURL)
         let (data,urlResponse) = try await URLSession.shared.data(from: fetchTitlesURL)
         
