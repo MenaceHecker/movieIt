@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    var heroTestTitle = Constants.testTitleURL
+
     let viewModel = ViewModel()
-        
+    @State private var titleDetailPath = NavigationPath()
     var body: some View {
         GeometryReader{ geo in
             ScrollView {
@@ -22,7 +22,7 @@ struct HomeView: View {
                         ProgressView()
                             .frame(width: geo.size.width, height: geo.size.height)
                     case .success:
-                        AsyncImage(url: URL(string: heroTestTitle)) { image in
+                        AsyncImage(url: URL(string: viewModel.heroTitle.posterPath ?? "")) { image in
                             image
                                 .resizable()
                                 .scaledToFit()

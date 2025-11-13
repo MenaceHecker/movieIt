@@ -38,6 +38,10 @@ class ViewModel{
                 trendingTV = try await tTv
                 topRatedMovies = try await tRMovies
                 topRatedTV = try await tRTV
+                
+                if let title = trendingMovies.randomElement(){
+                    heroTitle = title
+                }
                 homeStatus = .fetching
             } catch {
                 print(error)
