@@ -21,6 +21,7 @@ class ViewModel{
     var trendingTV: [Title] = []
     var topRatedMovies: [Title] = []
     var topRatedTV: [Title] = []
+    var heroTitle = Title.previewTitles[0]
     
     func getTitles() async{
         homeStatus = .fetching
