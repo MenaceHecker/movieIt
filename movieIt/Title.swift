@@ -11,8 +11,8 @@ struct APIObject: Decodable{
     var results: [Title] = []
 }
 //Model View - View Model pattern helps keep the code organized by separating UI logic from business logic. 
-
-struct Title: Decodable, Identifiable {
+//Hashable tells swift that two items are same, required for the navigation path
+struct Title: Decodable, Identifiable, Hashable{
     var id: Int?
     var title: String?
     var name: String?
