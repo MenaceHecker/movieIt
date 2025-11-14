@@ -21,7 +21,7 @@ struct Title: Decodable, Identifiable, Hashable{
     
     static var previewTitles = [
         Title(id: 1, title: "Fast X", name: "Fast X", overview: "Movie about Dom Toretto", posterPath: Constants.testTitleURL),
-        Title(id: 2, title: "Ad Astra", name: "Ad Astra", overview: "Movie about Clifford McBride", posterPath: Constants.testTitleURL2),
+        Title(id: 2, title: "Ad Astra", name: "Ad Astra", overview: "Movie is about Clifford McBride and his adventures", posterPath: Constants.testTitleURL2),
         Title(id: 3, title: "300 Rise of An Empire", name: "300 Rise of An Empire", overview: "Movie about Rise of Empire", posterPath: Constants.testTitleURL3)
     ]
 }
