@@ -9,67 +9,87 @@ import SwiftUI
 
 struct HomeView: View {
 
-    let viewModel = ViewModel()
+    @State private var viewModel = ViewModel()
     @State private var titleDetailPath = NavigationPath()
+
     var body: some View {
         NavigationStack(path: $titleDetailPath) {
-            GeometryReader{ geo in
+
+            GeometryReader { geo in
                 ScrollView {
                     LazyVStack {
                         switch viewModel.homeStatus {
                         case .notStarted:
                             EmptyView()
+
                         case .fetching:
                             ProgressView()
-                                .frame(width: geo.size.width, height: geo.size.height)
+                                .frame(width: geo.size.width,
+                                       height: geo.size.height)
+
                         case .success:
                             AsyncImage(url: URL(string: viewModel.heroTitle.posterPath ?? "")) { image in
                                 image
                                     .resizable()
                                     .scaledToFit()
-                                    .overlay{
+                                    .overlay {
                                         LinearGradient(
-                                            stops: [Gradient.Stop(color: .clear, location: 0.8),
-                                                    Gradient.Stop(color: .gradient, location: 1)],
+                                            stops: [
+                                                .init(color: .clear, location: 0.8),
+                                                .init(color: .gradient, location: 1)
+                                            ],
                                             startPoint: .top,
-                                            endPoint: .bottom)
+                                            endPoint: .bottom
+                                        )
                                     }
                             } placeholder: {
                                 ProgressView()
                             }
-                            .frame(width: geo.size.width, height: geo.size.height * 0.85)
-                            
-                            HStack{
+                            .frame(width: geo.size.width,
+                                   height: geo.size.height * 0.85)
+
+                            HStack {
                                 Button {
                                     titleDetailPath.append(viewModel.heroTitle)
                                 } label: {
-                                    Text(Constants.playString)
-                                        .ghostButton()
+                                    Text(Constants.playString).ghostButton()
                                 }
-                                Button {
-                                } label: {
-                                    Text(Constants.downloadString)
-                                        .ghostButton()
+
+                                Button {} label: {
+                                    Text(Constants.downloadString).ghostButton()
                                 }
                             }
-                            
-                            HorizontalListView(header: Constants.trendingMovieString, titles: viewModel.trendingMovies)
-                            HorizontalListView(header: Constants.trendingTVString, titles: viewModel.trendingTV)
-                            HorizontalListView(header: Constants.topRatedMovieString, titles: viewModel.topRatedMovies)
-                            HorizontalListView(header: Constants.topRatedTVString, titles: viewModel.topRatedTV)
-                            
+
+                            HorizontalListView(header: Constants.trendingMovieString,
+                                               titles: viewModel.trendingMovies)
+
+                            HorizontalListView(header: Constants.trendingTVString,
+                                               titles: viewModel.trendingTV)
+
+                            HorizontalListView(header: Constants.topRatedMovieString,
+                                               titles: viewModel.topRatedMovies)
+
+                            HorizontalListView(header: Constants.topRatedTVString,
+                                               titles: viewModel.topRatedTV)
+
                         case .failed(let error):
                             Text("Error: \(error.localizedDescription)")
                         }
                     }
                 }
-                .task{
+                .task {
                     await viewModel.getTitles()
                 }
+            }
+
+            // ✅ MUST be inside NavigationStack
+            .navigationDestination(for: Title.self) { title in
+                TitleDetailView(title: title)
             }
         }
     }
 }
+
 
 #Preview {
     HomeView()

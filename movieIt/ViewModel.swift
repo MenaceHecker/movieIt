@@ -42,7 +42,7 @@ class ViewModel{
                 if let title = trendingMovies.randomElement(){
                     heroTitle = title
                 }
-                homeStatus = .fetching
+                homeStatus = .success
             } catch {
                 print(error)
                 homeStatus = .failed(underlyingError: error)
