@@ -61,16 +61,24 @@ struct HomeView: View {
                             }
 
                             HorizontalListView(header: Constants.trendingMovieString,
-                                               titles: viewModel.trendingMovies)
+                                               titles: viewModel.trendingMovies){ title in
+                                titleDetailPath.append(title)
+                            }
 
                             HorizontalListView(header: Constants.trendingTVString,
-                                               titles: viewModel.trendingTV)
+                                               titles: viewModel.trendingTV){ title in
+                                titleDetailPath.append(title)
+                            }
 
                             HorizontalListView(header: Constants.topRatedMovieString,
-                                               titles: viewModel.topRatedMovies)
+                                               titles: viewModel.topRatedMovies){ title in
+                                titleDetailPath.append(title)
+                            }
 
                             HorizontalListView(header: Constants.topRatedTVString,
-                                               titles: viewModel.topRatedTV)
+                                               titles: viewModel.topRatedTV){ title in
+                                titleDetailPath.append(title)
+                            }
 
                         case .failed(let error):
                             Text("Error: \(error.localizedDescription)")
@@ -80,11 +88,9 @@ struct HomeView: View {
                 .task {
                     await viewModel.getTitles()
                 }
-            }
-
-            // ✅ MUST be inside NavigationStack
-            .navigationDestination(for: Title.self) { title in
-                TitleDetailView(title: title)
+                .navigationDestination(for: Title.self) { title in
+                    TitleDetailView(title: title)
+                }
             }
         }
     }
