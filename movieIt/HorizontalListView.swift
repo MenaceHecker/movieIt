@@ -10,6 +10,7 @@ import SwiftUI
 struct HorizontalListView: View {
     let header : String
     var titles : [Title]
+    let onSelect : (Title) -> Void
     
     
     var body: some View {
