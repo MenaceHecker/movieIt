@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		740342442EAE776F00C922B7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 740342432EAE776100C922B7 /* README.md */; };
+		74F36E1B2EF1F53E009DBDC7 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 74F36E1A2EF1F53E009DBDC7 /* YouTubeiOSPlayerHelper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74F36E1B2EF1F53E009DBDC7 /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +73,7 @@
 			);
 			name = movieIt;
 			packageProductDependencies = (
+				74F36E1A2EF1F53E009DBDC7 /* YouTubeiOSPlayerHelper */,
 			);
 			productName = movieIt;
 			productReference = 7403422F2EAE6E0B00C922B7 /* movieIt.app */;
@@ -100,6 +103,9 @@
 			);
 			mainGroup = 740342262EAE6E0B00C922B7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				74F36E192EF1F53E009DBDC7 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 740342302EAE6E0B00C922B7 /* Products */;
 			projectDirPath = "";
@@ -341,6 +347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		74F36E192EF1F53E009DBDC7 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		74F36E1A2EF1F53E009DBDC7 /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 74F36E192EF1F53E009DBDC7 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 740342272EAE6E0B00C922B7 /* Project object */;
 }
