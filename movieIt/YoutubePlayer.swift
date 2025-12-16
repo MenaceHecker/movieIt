@@ -26,3 +26,4 @@ struct YoutubePlayer: UIViewRepresentable{
         webView.load(URLRequest(url: fullURL))
     }
 }
+

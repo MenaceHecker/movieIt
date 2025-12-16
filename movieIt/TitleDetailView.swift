@@ -13,7 +13,7 @@ struct TitleDetailView: View {
         GeometryReader{ geometry in
             ScrollView{
                 LazyVStack(alignment: .leading){
-                    YoutubePlayer(videoID: "jEm75y-R5wY")
+                    YoutubePlayer(videoID: "aqz-KE-bpKQ")
                         .aspectRatio(1.3, contentMode: .fit)
                     Text((title.name ?? title.title) ?? "")
                         .font(.largeTitle)
