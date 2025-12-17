@@ -6,3 +6,6 @@
 //
 
 import Foundation
+struct IdProperties: Codable {
+    
+}
