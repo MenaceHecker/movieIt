@@ -7,5 +7,5 @@
 
 import Foundation
 struct IdProperties: Codable {
-    
+    let videoId: String?
 }
