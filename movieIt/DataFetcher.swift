@@ -70,5 +70,11 @@ struct DataFetcher{
         guard let searchAPIKey = youtubeAPIKey else {
                     throw NetworkError.missingConfig
         }
+        let trailerSearch = title + YoutubeURLStrings.space.rawValue + YoutubeURLStrings.trailer.rawValue
+        guard let fetchVideoURL = URL(string: baseSearchURL)?.appending(queryItems: [URLQueryItem(name: YoutubeURLStrings.queryShorten.rawValue, value: trailerSearch),
+                                                                                     URLQueryItem(name: YoutubeURLStrings.key.rawValue, value: searchAPIKey)              ]) else {
+            throw NetworkError.urlBuildFailed
+        }
+        print(fetchVideoURL)
     }
 }
