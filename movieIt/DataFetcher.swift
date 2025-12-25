@@ -20,7 +20,12 @@ struct DataFetcher{
             throw NetworkError.urlBuildFailed
         }
         print(fetchTitlesURL)
-        let (data,urlResponse) = try await URLSession.shared.data(from: fetchTitlesURL)
+        var titles = try await fetchAndDecode(url: fetchTitlesURL, type: APIObject.self).results
+        Constants.addPosterPath(to: &titles)
+        return titles
+    }
+    func fetchAndDecode<T: Decodable> (url:URL, type: T.Type) async throws -> T {
+        let (data,urlResponse) = try await URLSession.shared.data(from: url)
         
         guard let response = urlResponse as? HTTPURLResponse, response.statusCode == 200 else {
             throw NetworkError.badURLResponse(underlyingError: NSError(
@@ -30,9 +35,7 @@ struct DataFetcher{
         }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        var titles = try decoder.decode(APIObject.self, from: data).results
-        Constants.addPosterPath(to: &titles)
-        return titles
+        return try decoder.decode(type, from: data)
     }
     
     private func buildURL (media: String, type: String) throws -> URL? {
