@@ -20,10 +20,30 @@ struct DataFetcher{
             throw NetworkError.urlBuildFailed
         }
         print(fetchTitlesURL)
-        var titles = try await fetchAndDecode(url: fetchTitlesURL, type: APIObject.self).results
+        var titles = try await fetchAndDecode(url: fetchTitlesURL, type: TMDBAPIObject.self).results
         Constants.addPosterPath(to: &titles)
         return titles
     }
+    
+    
+    func fetchVideoId(for title: String) async throws -> String? {
+        guard let baseSearchURL = tmdbBaseURL else{
+            throw NetworkError.missingConfig
+        }
+        guard let searchAPIKey = youtubeAPIKey else {
+                    throw NetworkError.missingConfig
+        }
+        let trailerSearch = title + YoutubeURLStrings.space.rawValue + YoutubeURLStrings.trailer.rawValue
+        guard let fetchVideoURL = URL(string: baseSearchURL)?.appending(queryItems: [URLQueryItem(name: YoutubeURLStrings.queryShorten.rawValue, value: trailerSearch),
+             URLQueryItem(name: YoutubeURLStrings.key.rawValue, value: searchAPIKey)
+            ]) else {
+            throw NetworkError.urlBuildFailed
+        }
+        print(fetchVideoURL)
+        
+        return try await fetchAndDecode(url: fetchVideoURL, type: YoutubeSearchResponse.self).items?.first?.id?.videoId ?? " "
+    }
+    
     func fetchAndDecode<T: Decodable> (url:URL, type: T.Type) async throws -> T {
         let (data,urlResponse) = try await URLSession.shared.data(from: url)
         
@@ -64,20 +84,5 @@ struct DataFetcher{
             throw NetworkError.urlBuildFailed
         }
         return url
-    }
-    
-    func fetchVideoId(for title: String) async throws -> String? {
-        guard let baseSearchURL = tmdbBaseURL else{
-            throw NetworkError.missingConfig
-        }
-        guard let searchAPIKey = youtubeAPIKey else {
-                    throw NetworkError.missingConfig
-        }
-        let trailerSearch = title + YoutubeURLStrings.space.rawValue + YoutubeURLStrings.trailer.rawValue
-        guard let fetchVideoURL = URL(string: baseSearchURL)?.appending(queryItems: [URLQueryItem(name: YoutubeURLStrings.queryShorten.rawValue, value: trailerSearch),
-                                                                                     URLQueryItem(name: YoutubeURLStrings.key.rawValue, value: searchAPIKey)              ]) else {
-            throw NetworkError.urlBuildFailed
-        }
-        print(fetchVideoURL)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct APIObject: Decodable{
+struct TMDBAPIObject: Decodable{
     var results: [Title] = []
 }
 //Model View - View Model pattern helps keep the code organized by separating UI logic from business logic. 
