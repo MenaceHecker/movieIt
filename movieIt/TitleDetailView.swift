@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TitleDetailView: View {
     let title: Title
+    
     var body: some View {
         GeometryReader{ geometry in
             ScrollView{

@@ -26,12 +26,12 @@ struct DataFetcher{
     }
     
     
-    func fetchVideoId(for title: String) async throws -> String? {
-        guard let baseSearchURL = tmdbBaseURL else{
+    func fetchVideoId(for title: String) async throws -> String {
+        guard let baseSearchURL = youtubeSearchURL else{
             throw NetworkError.missingConfig
         }
         guard let searchAPIKey = youtubeAPIKey else {
-                    throw NetworkError.missingConfig
+            throw NetworkError.missingConfig
         }
         let trailerSearch = title + YoutubeURLStrings.space.rawValue + YoutubeURLStrings.trailer.rawValue
         guard let fetchVideoURL = URL(string: baseSearchURL)?.appending(queryItems: [URLQueryItem(name: YoutubeURLStrings.queryShorten.rawValue, value: trailerSearch),
@@ -41,7 +41,7 @@ struct DataFetcher{
         }
         print(fetchVideoURL)
         
-        return try await fetchAndDecode(url: fetchVideoURL, type: YoutubeSearchResponse.self).items?.first?.id?.videoId ?? " "
+        return try await fetchAndDecode(url: fetchVideoURL, type: YoutubeSearchResponse.self).items?.first?.id?.videoId ?? ""
     }
     
     func fetchAndDecode<T: Decodable> (url:URL, type: T.Type) async throws -> T {
