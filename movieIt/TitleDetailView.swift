@@ -15,13 +15,16 @@ struct TitleDetailView: View {
     let viewModel = ViewModel()
     var body: some View {
         GeometryReader{ geometry in
-            swicth viewModel.videoIdStatus {
+            switch viewModel.videoIdStatus {
             case .notStarted:
                 EmptyView()
             case .fetching:
                 ProgressView()
                     .frame(width: geometry.size.width, height: geometry.size.height)
-            
+            case .success:
+                
+            case .failed(let underlyingError):
+                
             }
             
         }
