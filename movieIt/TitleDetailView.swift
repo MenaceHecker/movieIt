@@ -24,13 +24,18 @@ struct TitleDetailView: View {
             case .success:
                 ScrollView{
                     LazyVStack(alignment: .leading) {
-                        YoutubePlayer(videoId: viewModel.videoId)
+                        YoutubePlayer(videoID: viewModel.videoId)
                             .aspectRatio(1.3, contentMode: .fit)
+                        
+                        Text(titleName)
+                            .bold()
+                            .font(.title2)
+                            .padding(5)
                     }
                 }
                 
             case .failed(let underlyingError):
-                
+                Text(underlyingError.localizedDescription)
             }
             
         }
