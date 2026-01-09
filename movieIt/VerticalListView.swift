@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct VerticalListView: View {
+    var titles: [Title]
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    VerticalListView()
+    VerticalListView(titles: Title.previewTitles)
 }
