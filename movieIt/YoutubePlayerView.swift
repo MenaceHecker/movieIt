@@ -20,15 +20,8 @@ struct YoutubePlayerView: UIViewRepresentable {
             "controls": 1,
             "rel": 0,
             "modestbranding": 1
-            // "autoplay": 1   // enable if you want
+            // "autoplay": 1   // enable if needed
         ]
-        print("YouTube videoID:", videoID)
-        let debugURL = "https://www.youtube.com/embed/\(videoID)?playsinline=1&controls=1&rel=0&modestbranding=1"
-        print("Expected embed URL:", debugURL)
-
-        if videoID.count != 11 || videoID.range(of: #"^[A-Za-z0-9_-]{11}$"#, options: .regularExpression) == nil {
-            print("Warning: Unexpected YouTube videoID format:", videoID, "length:", videoID.count)
-        }
 
         playerView.load(withVideoId: videoID, playerVars: vars)
         return playerView
@@ -51,17 +44,17 @@ struct YoutubePlayerView: UIViewRepresentable {
         func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
             switch error {
             case .invalidParam:
-                print("YouTube Player Error: invalidParam — likely a bad videoID or playerVar.")
+                Logger.error("YouTube Player Error: invalidParam — likely a bad videoID or playerVar.")
             case .html5Error:
-                print("YouTube Player Error: html5Error — playback failed in the iFrame.")
+                Logger.error("YouTube Player Error: html5Error — playback failed in the iFrame.")
             case .videoNotFound:
-                print("YouTube Player Error: videoNotFound — ID doesn’t exist or is private.")
+                Logger.error("YouTube Player Error: videoNotFound — ID doesn’t exist or is private.")
             case .notEmbeddable:
-                print("YouTube Player Error: notEmbeddable — uploader disabled embedding or restricted.")
+                Logger.error("YouTube Player Error: notEmbeddable — uploader disabled embedding or restricted.")
             case .unknown:
                 fallthrough
             @unknown default:
-                print("YouTube Player Error: unknown")
+                Logger.error("YouTube Player Error: unknown")
             }
         }
     }

@@ -19,7 +19,7 @@ struct DataFetcher{
         guard let fetchTitlesURL = fetchTitleURL else {
             throw NetworkError.urlBuildFailed
         }
-        print(fetchTitlesURL)
+        Logger.debug(String(describing: fetchTitlesURL))
         var titles = try await fetchAndDecode(url: fetchTitlesURL, type: TMDBAPIObject.self).results
         Constants.addPosterPath(to: &titles)
         return titles
@@ -48,14 +48,14 @@ struct DataFetcher{
             .appending(queryItems: queryItems) else {
             throw NetworkError.urlBuildFailed
         }
-        print("YouTube Search URL:", fetchVideoURL)
+        Logger.debug("YouTube Search URL: \(fetchVideoURL.absoluteString)")
 
         let response = try await fetchAndDecode(url: fetchVideoURL, type: YoutubeSearchResponse.self)
         if let videoId = response.items?.first?.id?.videoId, !videoId.isEmpty {
-            print("Selected YouTube videoId:", videoId)
+            Logger.debug("Selected YouTube videoId: \(videoId)")
             return videoId
         } else {
-            print("No videoId found in search response for:", trailerSearch)
+            Logger.debug("No videoId found in search response for: \(trailerSearch)")
             throw NetworkError.urlBuildFailed
         }
     }
@@ -102,3 +102,4 @@ struct DataFetcher{
         return url
     }
 }
+
