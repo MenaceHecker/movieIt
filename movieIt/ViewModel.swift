@@ -6,6 +6,25 @@
 //
 
 import Foundation
+#if DEBUG
+struct Logger {
+    static func debug(_ message: @autoclosure () -> String) {
+        #if DEBUG
+        print(message())
+        #endif
+    }
+    static func error(_ message: @autoclosure () -> String) {
+        #if DEBUG
+        print("❗️" + message())
+        #endif
+    }
+}
+#else
+struct Logger {
+    static func debug(_ message: @autoclosure () -> String) {}
+    static func error(_ message: @autoclosure () -> String) {}
+}
+#endif
  //observable allows viewmodel to automatically modify UI of any data changes. Cannot use struct with observable
 @MainActor
 @Observable
@@ -47,7 +66,7 @@ class ViewModel{
                 }
                 homeStatus = .success
             } catch {
-                print(error)
+                Logger.error("Home fetch failed: \(error.localizedDescription)")
                 homeStatus = .failed(underlyingError: error)
             }
         }
@@ -64,10 +83,11 @@ class ViewModel{
             videoIdStatus = .success
         }
         catch {
-            print(error)
+            Logger.error("Video ID fetch failed for title '" + title + "': \(error.localizedDescription)")
             
             videoIdStatus = .failed(underlyingError: error)
             
         }
     }
 }
+
