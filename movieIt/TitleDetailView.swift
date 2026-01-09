@@ -22,6 +22,12 @@ struct TitleDetailView: View {
                 ProgressView()
                     .frame(width: geometry.size.width, height: geometry.size.height)
             case .success:
+                ScrollView{
+                    LazyVStack(alignment: .leading) {
+                        YoutubePlayer(videoId: viewModel.videoId)
+                            .aspectRatio(1.3, contentMode: .fit)
+                    }
+                }
                 
             case .failed(let underlyingError):
                 
