@@ -9,10 +9,17 @@ import SwiftUI
 
 struct VerticalListView: View {
     var titles: [Title]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(titles) { title in
+            AsyncImage(url: URL(string: title.posterPath ?? "")) { image in
+                
+            } placeholder: {
+                ProgressView()
+            }
+            }
+        }
     }
-}
 
 #Preview {
     VerticalListView(titles: Title.previewTitles)
