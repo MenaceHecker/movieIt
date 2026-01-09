@@ -27,21 +27,37 @@ struct DataFetcher{
     
     
     func fetchVideoId(for title: String) async throws -> String {
-        guard let baseSearchURL = youtubeSearchURL else{
+        guard let baseSearchURL = youtubeSearchURL else {
             throw NetworkError.missingConfig
         }
         guard let searchAPIKey = youtubeAPIKey else {
             throw NetworkError.missingConfig
         }
         let trailerSearch = title + YoutubeURLStrings.space.rawValue + YoutubeURLStrings.trailer.rawValue
-        guard let fetchVideoURL = URL(string: baseSearchURL)?.appending(queryItems: [URLQueryItem(name: YoutubeURLStrings.queryShorten.rawValue, value: trailerSearch),
-             URLQueryItem(name: YoutubeURLStrings.key.rawValue, value: searchAPIKey)
-            ]) else {
+
+        let queryItems = [
+            URLQueryItem(name: "part", value: "snippet"),
+            URLQueryItem(name: "type", value: "video"),
+            URLQueryItem(name: "videoEmbeddable", value: "true"),
+            URLQueryItem(name: "maxResults", value: "1"),
+            URLQueryItem(name: YoutubeURLStrings.queryShorten.rawValue, value: trailerSearch),
+            URLQueryItem(name: YoutubeURLStrings.key.rawValue, value: searchAPIKey)
+        ]
+
+        guard let fetchVideoURL = URL(string: baseSearchURL)?
+            .appending(queryItems: queryItems) else {
             throw NetworkError.urlBuildFailed
         }
-        print(fetchVideoURL)
-        
-        return try await fetchAndDecode(url: fetchVideoURL, type: YoutubeSearchResponse.self).items?.first?.id?.videoId ?? ""
+        print("YouTube Search URL:", fetchVideoURL)
+
+        let response = try await fetchAndDecode(url: fetchVideoURL, type: YoutubeSearchResponse.self)
+        if let videoId = response.items?.first?.id?.videoId, !videoId.isEmpty {
+            print("Selected YouTube videoId:", videoId)
+            return videoId
+        } else {
+            print("No videoId found in search response for:", trailerSearch)
+            throw NetworkError.urlBuildFailed
+        }
     }
     
     func fetchAndDecode<T: Decodable> (url:URL, type: T.Type) async throws -> T {

@@ -9,35 +9,56 @@ import SwiftUI
 
 struct TitleDetailView: View {
     let title: Title
+
     var titleName: String {
-        return (title.name ?? title.title) ?? ""
+        (title.name ?? title.title) ?? ""
     }
-    let viewModel = ViewModel()
+
+    //Correct implementaton for @Observable classes
+    @State private var viewModel = ViewModel()
+
     var body: some View {
-        GeometryReader{ geometry in
+        GeometryReader { geometry in
             switch viewModel.videoIdStatus {
             case .notStarted:
                 EmptyView()
+
             case .fetching:
-                ProgressView()
+                ProgressView("Loading trailer…")
                     .frame(width: geometry.size.width, height: geometry.size.height)
+
             case .success:
-                ScrollView{
-                    LazyVStack(alignment: .leading) {
-                        YoutubePlayer(videoID: viewModel.videoId)
-                            .aspectRatio(1.3, contentMode: .fit)
-                        
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 14) {
+
+                        YoutubePlayerView(videoID: viewModel.videoId)
+                            .aspectRatio(16/9, contentMode: .fit)
+                            .cornerRadius(12)
+                            .padding(.horizontal)
+
                         Text(titleName)
                             .bold()
                             .font(.title2)
-                            .padding(5)
+                            .padding(.horizontal)
+
+                        if let overview = title.overview, !overview.isEmpty {
+                            Text(overview)
+                                .font(.callout)
+                                .foregroundColor(.secondary)
+                                .lineSpacing(4)
+                                .padding(.horizontal)
+                        }
                     }
+                    .padding(.top)
                 }
-                
+
             case .failed(let underlyingError):
                 Text(underlyingError.localizedDescription)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
             }
-            
+        }
+        .task {
+            await viewModel.getVideoId(for: titleName)
         }
     }
 }
