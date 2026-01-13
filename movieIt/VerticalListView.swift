@@ -12,11 +12,23 @@ struct VerticalListView: View {
     
     var body: some View {
         List(titles) { title in
-            AsyncImage(url: URL(string: title.posterPath ?? "")) { image in
-                
-            } placeholder: {
-                ProgressView()
+            AsyncImage(url: (title.posterPath.flatMap(URL.init(string:)))) { image in
+                HStack{
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(.rect(cornerRadius: 10))
+                        .padding(5)
+                    
+                    Text((title.name ?? title.title) ?? "")
+                        .font(.system(size: 14))
+                        .bold()
+                }
             }
+            placeholder: {
+                    ProgressView()
+                }
+            .frame(height: 150)
             }
         }
     }
@@ -24,3 +36,4 @@ struct VerticalListView: View {
 #Preview {
     VerticalListView(titles: Title.previewTitles)
 }
+
