@@ -85,8 +85,8 @@ struct DataFetcher{
         if type == "trending" {
             path = "3/trending/\(media)/day"
         }
-        else if type == "top_rated" {
-            path = "3/\(media)/top_rated"
+        else if type == "top_rated" || type == "upcoming"{
+            path = "3/\(media)/\(type)"
         }
         else {
             throw NetworkError.urlBuildFailed
