@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct UpcomingView: View {
+    let viewModel = ViewModel()
     var body: some View {
-        VerticalListView(titles: Title.previewTitles)
+        VerticalListView(titles: viewModel.upcomingMovies)
     }
 }
 
