@@ -83,7 +83,7 @@ struct DataFetcher{
         }
         var path:String
         if type == "trending" {
-            path = "3/trending/\(media)/day"
+            path = "3/\(type)/\(media)/day"
         }
         else if type == "top_rated" || type == "upcoming"{
             path = "3/\(media)/\(type)"
