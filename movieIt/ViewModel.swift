@@ -92,5 +92,17 @@ class ViewModel{
             
         }
     }
+    
+    func getUpcomingMovies() async {
+        upcomingStatus = .fetching
+        do{
+            upcomingMovies = try await dataFetcher.fetchTitles(for: "movie", by: "upcoming")
+            upcomingStatus = .success
+        }
+        catch {
+            print(error)
+            upcomingStatus = .failed(underlyingError: error)
+        }
+    }
 }
 
