@@ -88,6 +88,10 @@ struct DataFetcher{
         else if type == "top_rated" || type == "upcoming"{
             path = "3/\(media)/\(type)"
         }
+        
+        else if type == "search" {
+            path = "3/\(type)/\(media)"
+        }
         else {
             throw NetworkError.urlBuildFailed
         }
