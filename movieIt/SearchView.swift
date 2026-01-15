@@ -29,7 +29,16 @@ struct SearchView: View {
                     }
                 }
             }
-            .navigationTitle(<#T##title: Text##Text#>)
+            .navigationTitle(Constants.movieSearchString)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: Constants.movieIconString)
+                    }
+                }
+            }
         }
     }
 }
