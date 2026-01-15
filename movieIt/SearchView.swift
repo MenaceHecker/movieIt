@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     var titles = Title.previewTitles
+    @State private var searchByMovies = true
     var body: some View {
         NavigationStack {
             ScrollView{
@@ -29,13 +30,13 @@ struct SearchView: View {
                     }
                 }
             }
-            .navigationTitle(Constants.movieSearchString)
+            .navigationTitle(searchByMovies ? Constants.movieSearchString : Constants.tvSearchString)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        
+                        searchByMovies.toggle()
                     } label: {
-                        Image(systemName: Constants.movieIconString)
+                        Image(systemName: searchByMovies ? Constants.movieIconString : Constants.tvIconString)
                     }
                 }
             }
