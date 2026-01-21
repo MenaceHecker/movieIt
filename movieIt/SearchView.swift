@@ -11,6 +11,8 @@ struct SearchView: View {
     var titles = Title.previewTitles
     @State private var searchByMovies = true
     @State private var searchText = ""
+    private let searchViewModel = SearchViewModel()
+    
     var body: some View {
         NavigationStack {
             ScrollView{

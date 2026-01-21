@@ -20,7 +20,7 @@ class SearchViewModel {
                 searchTitles = try await dataFetcher.fetchTitles(for: media, by: "trending")
             }
             else {
-                
+                searchTitles = try await dataFetcher.fetchTitles(for: media, by: "search", with: title)
             }
         } catch{
             print(error)
