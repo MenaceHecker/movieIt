@@ -15,7 +15,7 @@ struct DataFetcher{
     let youtubeAPIKey = APIConfig.shared?.youtubeAPIKey
     
     func fetchTitles(for media:String, by type:String, with title:String? = nil) async throws -> [Title] {
-        let fetchTitleURL = try buildURL(media: media, type: type)
+        let fetchTitleURL = try buildURL(media: media, type: type, searchPhrase: title)
         guard let fetchTitlesURL = fetchTitleURL else {
             throw NetworkError.urlBuildFailed
         }
