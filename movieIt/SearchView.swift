@@ -44,6 +44,14 @@ struct SearchView: View {
                 }
             }
             .searchable(text: $searchText, prompt: searchByMovies ? Constants.moviePlaceHolderString : Constants.tvPlaceHolderString)
+            .task(id: searchText){
+                try? await Task.sleep(for: .milliseconds(600))
+                
+                if Task.isCancelled{
+                    return
+                }
+                await searchViewModel.getSearchTitles(by: searchByMovies ? "movie" : "tv", for: searchText)
+            }
         }
     }
 }
