@@ -11,6 +11,8 @@ struct HomeView: View {
 
     @State private var viewModel = ViewModel()
     @State private var titleDetailPath = NavigationPath()
+    @Environment(\.modelContext) var modelContext
+    // This grabs the connection to swift data that allows inserting, saving and deleting data anywhere in this view
 
     var body: some View {
         NavigationStack(path: $titleDetailPath) {
