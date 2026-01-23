@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct movieItApp: App {
@@ -13,5 +14,7 @@ struct movieItApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Title.self)
+        //This creates a Swift Data Container that can store and manage title objects It handles saving, loading and keeps model data in sync with the databse.
     }
 }
