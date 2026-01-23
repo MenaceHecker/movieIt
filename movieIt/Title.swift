@@ -29,9 +29,17 @@ class Title: Decodable, Identifiable, Hashable{
         self.overview = overview
         self.posterPath = posterPath
     }
+    
+    enum CodingKeys: CodingKey {
+        case id
+        case title
+        case name
+        case overview
+        case posterPath
+    }
 // required init makes sure any subclass can be decoded the same way as to create the model from decoded JSON data
     required init(from decoder: any Decoder) throws {
-        
+        // coding keys are needed to properly match JSON's obj property to ours
     }
     
     static var previewTitles = [
