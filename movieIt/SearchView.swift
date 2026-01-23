@@ -14,7 +14,7 @@ struct SearchView: View {
     // navigationPath variable will track and control navigation history
     @State private var navigationPath = NavigationPath()
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             ScrollView{
                 
                 if let error = searchViewModel.errorMessage{
