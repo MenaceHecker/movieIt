@@ -14,7 +14,7 @@ struct SearchView: View {
     // navigationPath variable will track and control navigation history
     @State private var navigationPath = NavigationPath()
     var body: some View {
-        NavigationStack(path: $navigationPath) {
+        NavigationStack(path: $navigationPath) {// this binds the stack's navigation state to our navigation path, letting us push and display views
             ScrollView{
                 
                 if let error = searchViewModel.errorMessage{
@@ -38,6 +38,9 @@ struct SearchView: View {
                             ProgressView()
                         }
                         .frame(width: 120, height: 200)
+                        .onTapGesture {
+                            navigationPath.append(<#T##value: Hashable##Hashable#>)
+                        }
                     }
                 }
             }
@@ -64,6 +67,9 @@ struct SearchView: View {
                     return
                 }
                 await searchViewModel.getSearchTitles(by: searchByMovies ? "movie" : "tv", for: searchText)
+            }
+            .navigationDestination(for: Title.self) { title in
+                TitleDetailView(title: title) //When the title struct is passed into our navigation path the view will navigate to title detail view passing in the tab title 
             }
         }
     }
