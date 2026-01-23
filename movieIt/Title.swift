@@ -4,8 +4,8 @@
 //
 //  Created by Tushar Mishra on 10/29/25.
 //
-
-import Foundation
+// This SwiftData framework handles storing the underlying model data, and optionally, syncing that data across multiple devices.
+import SwiftData
 
 struct TMDBAPIObject: Decodable{
     var results: [Title] = []
