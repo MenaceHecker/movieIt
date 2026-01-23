@@ -11,7 +11,8 @@ struct SearchView: View {
     @State private var searchByMovies = true
     @State private var searchText = ""
     private let searchViewModel = SearchViewModel()
-    
+    // navigationPath variable will track and control navigation history
+    @State private var navigationPath = NavigationPath()
     var body: some View {
         NavigationStack {
             ScrollView{
