@@ -38,7 +38,12 @@ struct SearchView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         searchByMovies.toggle()
-                    } label: {
+                        
+                    Task{
+                        await searchViewModel.getSearchTitles(by: searchByMovies ? "movie" : "tv", for: searchText)
+                    }
+                }
+                    label: {
                         Image(systemName: searchByMovies ? Constants.movieIconString : Constants.tvIconString)
                     }
                 }
