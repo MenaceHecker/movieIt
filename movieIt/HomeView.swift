@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SwiftData
 struct HomeView: View {
 
     @State private var viewModel = ViewModel()
@@ -57,7 +57,10 @@ struct HomeView: View {
                                     Text(Constants.playString).ghostButton()
                                 }
 
-                                Button {} label: {
+                                Button {
+                                    modelContext.insert(viewModel.heroTitle)
+                                    try? modelContext.save()
+                                } label: {
                                     Text(Constants.downloadString).ghostButton()
                                 }
                             }
