@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DownloadView: View {
+    
+    @Query var savedTitles: [Title]
+// Fetches all data and updates list automatically when db changes
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
     }
 }
 
