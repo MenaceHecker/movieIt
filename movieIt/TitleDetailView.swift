@@ -40,7 +40,19 @@ struct TitleDetailView: View {
                             .bold()
                             .font(.title2)
                             .padding(.horizontal)
+                        
+                        HStack{
+                            Spacer()
+                            Button {
+                                
+                            } label: {
+                                Text(Constants.downloadString)
+                                    .ghostButton()
+                            }
 
+                            Spacer()
+                        }
+                        
                         if let overview = title.overview, !overview.isEmpty {
                             Text(overview)
                                 .font(.callout)
