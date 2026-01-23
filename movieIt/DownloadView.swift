@@ -19,6 +19,8 @@ struct DownloadView: View {
                     .padding()
                     .font(.title3)
                     .bold()
+            } else {
+                VerticalListView(titles: savedTitles)
             }
         }
     }
