@@ -40,6 +40,13 @@ class Title: Decodable, Identifiable, Hashable{
 // required init makes sure any subclass can be decoded the same way as to create the model from decoded JSON data
     required init(from decoder: any Decoder) throws {
         // coding keys are needed to properly match JSON's obj property to ours
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+// All properties are optional as server might return null
+        id = try container.decodeIfPresent(Int.self, forKey: .id)
+        title = try container.decodeIfPresent(String.self, forKey: .title)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
+        overview = try container.decodeIfPresent(String.self, forKey: .overview)
+        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath)
     }
     
     static var previewTitles = [
