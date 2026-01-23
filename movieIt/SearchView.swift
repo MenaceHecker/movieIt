@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SearchView: View {
-    var titles = Title.previewTitles
     @State private var searchByMovies = true
     @State private var searchText = ""
     private let searchViewModel = SearchViewModel()
@@ -16,9 +15,17 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             ScrollView{
+                
+                if let error = searchViewModel.errorMessage{
+                    Text(error)
+                        .foregroundStyle(.red)
+                        .padding()
+                        .background(.ultraThinMaterial)
+                        .clipShape(.rect(cornerRadius: 10))
+                }
                 //LazyVGrid Allows items to stack vertically into columns, Lazy would load items only when they are needed on screen
                 LazyVGrid(columns: [GridItem(), GridItem(),  GridItem()]) {
-                    ForEach(titles) { title in
+                    ForEach(searchViewModel.searchTitles) { title in
                         AsyncImage(url: URL(string: title.posterPath ?? "")){
                             image in
                             image
