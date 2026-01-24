@@ -15,7 +15,8 @@ struct TMDBAPIObject: Decodable{
 //Hashable tells swift that two items are same, required for the navigation path
 @Model
 class Title: Decodable, Identifiable, Hashable{
-    var id: Int?
+    @Attribute(.unique) var id: Int?
+    //This macro ensures that each title saved in the Swift Data has a unique ID so it won't allow saving if two titles have same IDs, preventing duplicates
     var title: String?
     var name: String?
     var overview: String?
