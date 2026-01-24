@@ -9,8 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct DownloadView: View {
-    
-    @Query var savedTitles: [Title]
+    //sort macro sorts the downloaded list alphabetically
+    @Query(sort: \Title.title) var savedTitles: [Title]
 // Fetches all data and updates list automatically when db changes
     var body: some View {
         NavigationStack{
