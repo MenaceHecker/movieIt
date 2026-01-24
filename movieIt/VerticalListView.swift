@@ -10,6 +10,7 @@ import SwiftUI
 // nav link allows defining where the user goes and how the link looks using label
 struct VerticalListView: View {
     var titles: [Title]
+    let canDelete: Bool
     
     var body: some View {
         List(titles) { title in
