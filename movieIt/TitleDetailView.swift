@@ -76,7 +76,9 @@ struct TitleDetailView: View {
 
             case .failed(let underlyingError):
                 Text(underlyingError.localizedDescription)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .errorMessage()
+                    .frame(width: geometry.size.width,height: geometry.size.height)
+
             }
         }
         .task {
