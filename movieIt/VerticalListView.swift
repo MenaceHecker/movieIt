@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 // Added nav stack to parent view , added nav link inside child view
 // nav link allows defining where the user goes and how the link looks using label
 struct VerticalListView: View {
@@ -35,6 +36,18 @@ struct VerticalListView: View {
                         ProgressView()
                     }
                 .frame(height: 150)
+            }
+            // swipeActions allow us to find an edge either leading or trailing where leading is in the front and trailing is at the back
+            .swipeActions(edge: .leading) {
+                if canDelete{
+                    Button{
+                        modelContext.delete(title)
+                        try? modelContext.save()
+                    }label: {
+                        Image(systemName: "trash")
+                            .tint(.red)
+                    }
+                }
             }
             
             }
