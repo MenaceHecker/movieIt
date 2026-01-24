@@ -37,8 +37,8 @@ struct VerticalListView: View {
                     }
                 .frame(height: 150)
             }
-            // swipeActions allow us to find an edge either leading or trailing where leading is in the front and trailing is at the back
-            .swipeActions(edge: .leading) {
+            // swipeActions allow us to find an edge either leading or trailing where leading is from the front and trailing is from the back
+            .swipeActions(edge: .trailing) {
                 if canDelete{
                     Button{
                         modelContext.delete(title)
