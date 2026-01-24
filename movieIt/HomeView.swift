@@ -86,7 +86,8 @@ struct HomeView: View {
                             }
 
                         case .failed(let error):
-                            Text("Error: \(error.localizedDescription)")
+                            Text(error.localizedDescription)
+                                .errorMessage()
                         }
                     }
                 }
