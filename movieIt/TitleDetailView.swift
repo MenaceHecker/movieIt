@@ -10,6 +10,8 @@ import SwiftData
 
 
 struct TitleDetailView: View {
+    
+    @Environment(\.dismiss) var dismiss
     let title: Title
 
     var titleName: String {
@@ -52,6 +54,7 @@ struct TitleDetailView: View {
                                 saveTitle.title = titleName
                                 modelContext.insert(saveTitle)
                                 try? modelContext.save()
+                                dismiss()
                             } label: {
                                 Text(Constants.downloadString)
                                     .ghostButton()

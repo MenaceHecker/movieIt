@@ -29,3 +29,4 @@ struct DownloadView: View {
 #Preview {
     DownloadView()
 }
+//Rewire upcoming and download tabs to use paths 
