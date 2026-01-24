@@ -39,7 +39,7 @@ struct SearchView: View {
                         }
                         .frame(width: 120, height: 200)
                         .onTapGesture {
-                            navigationPath.append(<#T##value: Hashable##Hashable#>)
+                            navigationPath.append(title)
                         }
                     }
                 }

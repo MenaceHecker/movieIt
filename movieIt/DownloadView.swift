@@ -11,16 +11,22 @@ import SwiftData
 struct DownloadView: View {
     //sort macro sorts the downloaded list alphabetically
     @Query(sort: \Title.title) var savedTitles: [Title]
+    @State private var navigationPath = NavigationPath()
 // Fetches all data and updates list automatically when db changes
     var body: some View {
-        NavigationStack{
-            if savedTitles.isEmpty{
-                Text("No Downloads Found")
-                    .padding()
-                    .font(.title3)
-                    .bold()
-            } else {
-                VerticalListView(titles: savedTitles, canDelete: true)
+        NavigationStack(path: $navigationPath){
+            Group {
+                if savedTitles.isEmpty{
+                    Text("No Downloads Found")
+                        .padding()
+                        .font(.title3)
+                        .bold()
+                } else {
+                    VerticalListView(titles: savedTitles, canDelete: true)
+                }
+            }
+            .navigationDestination(for: Title.self) { title in
+                TitleDetailView(title: title)
             }
         }
     }
@@ -30,3 +36,4 @@ struct DownloadView: View {
     DownloadView()
 }
 //Rewire upcoming and download tabs to use paths 
+
