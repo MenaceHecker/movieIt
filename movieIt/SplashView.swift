@@ -10,61 +10,37 @@ struct SplashView: View {
                 ContentView()
             } else {
                 ZStack {
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color.blue, Color.purple]),
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                    .ignoresSafeArea()
+                    Color.white
+                        .ignoresSafeArea()
 
                     VStack(spacing: 16) {
-                        // Logo with white background handled by rounded mask and subtle shadow
                         #if canImport(UIKit)
-                        if UIImage(named: "movieIt_logo") != nil {
-                            Image("movieIt_logo")
+                        if let uiImage = UIImage(named: "movieIt_logo") {
+                            Image(uiImage: uiImage)
                                 .resizable()
+                                .renderingMode(.original)
                                 .scaledToFit()
-                                .frame(width: 140, height: 140)
-                                .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
-                                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 6)
-                                .scaleEffect(isAnimating ? 1.0 : 0.9)
+                                .frame(width: 280, height: 280)
+                                .scaleEffect(isAnimating ? 1.0 : 0.95)
                                 .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isAnimating)
                         } else {
-                            Image(systemName: "film")
-                                .font(.system(size: 64))
-                                .foregroundColor(.white.opacity(0.9))
-                                .padding()
-                                .background(Color.white.opacity(0.2))
-                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                .scaleEffect(isAnimating ? 1.0 : 0.9)
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.system(size: 56, weight: .bold))
+                                .foregroundStyle(.white)
+                                .frame(width: 280, height: 280)
+                                .scaleEffect(isAnimating ? 1.0 : 0.95)
                                 .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isAnimating)
                         }
-                        #else
-                        Image("movieIt_logo")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 140, height: 140)
-                            .background(Color.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
-                            .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 6)
-                            .scaleEffect(isAnimating ? 1.0 : 0.9)
-                            .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isAnimating)
                         #endif
-
-                        Text("movieIt")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
 
                         Text("Find. Watch. Enjoy.")
                             .font(.headline)
-                            .foregroundColor(.white.opacity(0.8))
+                            .foregroundColor(.red)
 
                         // Loading indicator
                         ProgressView()
                             .progressViewStyle(.circular)
-                            .tint(.white)
+                            .tint(.red)
                             .scaleEffect(1.2)
                             .padding(.top, 8)
                     }
